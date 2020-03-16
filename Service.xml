@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2017.2.1 (Build 801)" ts="2020-03-16 11:57:59">
+<Class name="Service.ImpostoEhRoubo">
+<Super>%RegisteredObject</Super>
+<TimeChanged>65454,42918.897642</TimeChanged>
+<TimeCreated>65454,42462.128648</TimeCreated>
+
+<Method name="calculaICMS">
+<ClassMethod>1</ClassMethod>
+<FormalSpec>valor</FormalSpec>
+<Implementation><![CDATA[	return valor * 0.2
+]]></Implementation>
+</Method>
+
+<Method name="calculaIOF">
+<ClassMethod>1</ClassMethod>
+<Implementation><![CDATA[	Set valorF = ($ZSQR(valor)) + (valor * 0.45)
+]]></Implementation>
+</Method>
+</Class>
+
+
+</Export>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2017.2.1 (Build 801)" ts="2020-03-17 11:44:53">
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2017.2.1 (Build 801)" ts="2020-03-18 16:14:08">
 <Class name="Controller.ImpostoEhRoubo">
 <Super>%RegisteredObject</Super>
 <TimeChanged>65455,42249.287517</TimeChanged>
@@ -33,7 +33,7 @@
 
 <Class name="Service.ImpostoEhRoubo">
 <Super>%RegisteredObject</Super>
-<TimeChanged>65455,40674.328948</TimeChanged>
+<TimeChanged>65456,53592.764919</TimeChanged>
 <TimeCreated>65454,42462.128648</TimeCreated>
 
 <Method name="CalculaICMS">
@@ -146,12 +146,16 @@
 </Class>
 
 
-<Project name="calculoImposto" LastModified="2020-03-17 11:21:43.616129">
+<Project name="calculoImposto" LastModified="2020-03-17 11:21:43.614993">
   <Items>
-    <ProjectItem name="Service.ImpostoEhRoubo" type="CLS"></ProjectItem>
-    <ProjectItem name="View.ImpostoEhRoubo" type="CLS"></ProjectItem>
     <ProjectItem name="Controller.ImpostoEhRoubo" type="CLS"></ProjectItem>
-    <ProjectItem name="test.unittest.Service.ImpostoEhRouboTests" type="CLS"></ProjectItem>
+    <ProjectItem name="Service.ImpostoEhRoubo" type="CLS"></ProjectItem>
+    <ProjectItem name="TestCoverage.INC" type="MAC"></ProjectItem>
+    <ProjectItem name="View.ImpostoEhRoubo" type="CLS"></ProjectItem>
+    <ProjectItem name="test.framework.CExecuteTests" type="CLS"></ProjectItem>
+    <ProjectItem name="test.framework.CUnitTestBase" type="CLS"></ProjectItem>
+    <ProjectItem name="test.framework.InterSystems.CFormatter" type="CLS"></ProjectItem>
+    <ProjectItem name="test.framework.InterSystems.CManager" type="CLS"></ProjectItem>
     <ProjectItem name="test.framework.InterSystems.CUnitTest" type="CLS"></ProjectItem>
     <ProjectItem name="test.framework.InterSystems.CUnitTestTransaction" type="CLS"></ProjectItem>
     <ProjectItem name="test.framework.Mock.CCustomFunctionParamValidator" type="CLS"></ProjectItem>
@@ -206,11 +210,7 @@
     <ProjectItem name="test.testcoverage.Utils.File" type="CLS"></ProjectItem>
     <ProjectItem name="test.testcoverage.Utils.LineByLineMonitor" type="CLS"></ProjectItem>
     <ProjectItem name="test.testcoverage.Utils.Projection.SchemaGenerator" type="CLS"></ProjectItem>
-    <ProjectItem name="TestCoverage.INC" type="MAC"></ProjectItem>
-    <ProjectItem name="test.framework.CExecuteTests" type="CLS"></ProjectItem>
-    <ProjectItem name="test.framework.CUnitTestBase" type="CLS"></ProjectItem>
-    <ProjectItem name="test.framework.InterSystems.CFormatter" type="CLS"></ProjectItem>
-    <ProjectItem name="test.framework.InterSystems.CManager" type="CLS"></ProjectItem>
+    <ProjectItem name="test.unittest.Service.ImpostoEhRouboTests" type="CLS"></ProjectItem>
     <ProjectItem name="test.unittest.UnitTestAbstract" type="CLS"></ProjectItem>
   </Items>
 </Project>
@@ -9905,7 +9905,7 @@ Cleanup is automatic when parent class is deleted.</Description>
 
 <Class name="test.unittest.Service.ImpostoEhRouboTests">
 <Super>test.unittest.UnitTestAbstract</Super>
-<TimeChanged>65455,40790.650661</TimeChanged>
+<TimeChanged>65456,53594.374599</TimeChanged>
 <TimeCreated>65455,32614.709614</TimeCreated>
 
 <Property name="Service">
@@ -10022,6 +10022,17 @@ Cleanup is automatic when parent class is deleted.</Description>
 	
 	Set imposto = ..Service.CalculaIPI(100001)
 	Do $$$AssertEquals(imposto, 319003.19)
+	
+	Do ..VerifyAllMocks()
+]]></Implementation>
+</Method>
+
+<Method name="TestCalculaIPIInvalido">
+<Implementation><![CDATA[
+	Do ..ReplayAllMocks()
+	
+	Set imposto = ..Service.CalculaIPI("Teste valor Inválido")
+	Do $$$AssertEquals(imposto, 0)
 	
 	Do ..VerifyAllMocks()
 ]]></Implementation>
